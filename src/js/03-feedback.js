@@ -18,8 +18,13 @@ function addData(evt) {
 formRef.addEventListener('submit', removeData);
 function removeData(evt) {
   evt.preventDefault();
-  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
   localStorage.removeItem(STORAGE_KEY);
+  if (inputNameRef.value === '' || areaMessageRef.value === '') {
+    alert('Введіть дані!!!');
+    return;
+  } else {
+    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+  }
   formRef.reset();
   delete dataStorage.email;
   delete dataStorage.message;
@@ -28,7 +33,7 @@ function getStorageLocalValue() {
   const storageOBject = localStorage.getItem(STORAGE_KEY);
   if (storageOBject) {
     const storageValue = JSON.parse(storageOBject);
-    areaMessageRef.value = storageValue.message;
-    inputNameRef.value = storageValue.email;
+    areaMessageRef.value = storageValue.message || '';
+    inputNameRef.value = storageValue.email || '';
   }
 }
