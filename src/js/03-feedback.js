@@ -18,13 +18,13 @@ function addData(evt) {
 formRef.addEventListener('submit', removeData);
 function removeData(evt) {
   evt.preventDefault();
-  localStorage.removeItem(STORAGE_KEY);
   if (inputNameRef.value === '' || areaMessageRef.value === '') {
     alert('Введіть дані!!!');
     return;
   } else {
     console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
   }
+  localStorage.removeItem(STORAGE_KEY);
   formRef.reset();
   delete dataStorage.email;
   delete dataStorage.message;
